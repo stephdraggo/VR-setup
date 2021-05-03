@@ -15,6 +15,8 @@ namespace BigBoi.VR.Interaction
         private InteractableObject collidingObject;
         private InteractableObject heldObject;
 
+        private Transform heldOriginalParent;
+
         void Start()
         {
             input = gameObject.GetComponent<VrControllerInput>();
@@ -39,54 +41,46 @@ namespace BigBoi.VR.Interaction
 
         private void GrabObject()
         {
-            if (collidingObject == null) return; //safety first
-
             heldObject = collidingObject;
             collidingObject = null;
-            FixedJoint joint = AddJoint(heldObject.Rigidbody);
+            heldOriginalParent = heldObject.transform.parent;
 
-            if (heldObject.AttachPoint != null) //if we have an attach point, use it
-            {
-                heldObject.transform.position = transform.position - 
-                    (heldObject.AttachPoint.position - heldObject.transform.position);
-                heldObject.transform.rotation = transform.rotation * 
-                    Quaternion.Euler(heldObject.AttachPoint.localEulerAngles);
-            }
-            else
-            {
-                heldObject.transform.position = transform.position;
-                heldObject.transform.rotation = transform.rotation;
-            }
+            heldObject.Rigidbody.isKinematic = true;
+            SnapObject(heldObject.transform, heldObject.AttachPoint);
 
-            grabbed.Invoke(new InteractEventArgs(input.Controller, heldObject.Rigidbody, heldObject.Collider));
             heldObject.OnObjectGrabbed(input.Controller);
+            grabbed.Invoke(new InteractEventArgs(input.Controller, heldObject.Rigidbody, heldObject.Collider));
+
         }
 
         private void ReleaseObject()
         {
-            RemoveJoint(gameObject.GetComponent<FixedJoint>());
-            released.Invoke(new InteractEventArgs(input.Controller, heldObject.Rigidbody, heldObject.Collider));
+            heldObject.Rigidbody.isKinematic = false;
+            heldObject.transform.SetParent(heldOriginalParent);
+
+            heldObject.Rigidbody.velocity = input.Controller.Velocity;
+            heldObject.Rigidbody.angularVelocity = input.Controller.AngularVelocity;
+
             heldObject.OnObjectReleased(input.Controller);
+            released.Invoke(new InteractEventArgs(input.Controller, heldObject.Rigidbody, heldObject.Collider));
             heldObject = null;
         }
 
-        private FixedJoint AddJoint(Rigidbody _rigidbody)
+        private void SnapObject(Transform _object, Transform _snapHandle)
         {
-            FixedJoint joint = gameObject.AddComponent<FixedJoint>();
-            joint.breakForce = 20000;
-            joint.breakTorque = 20000;
-            joint.connectedBody = _rigidbody;
-            return joint;
-        }
+            _object.transform.SetParent(transform);
 
-        private void RemoveJoint(FixedJoint _joint)
-        {
-            if (_joint != null)
+            Rigidbody attachPoint = input.Controller.Rigidbody;
+
+            if (_snapHandle == null)
             {
-                _joint.connectedBody = null;
-                Destroy(_joint);
-                heldObject.Rigidbody.velocity = input.Controller.Velocity;
-                heldObject.Rigidbody.angularVelocity = input.Controller.AngularVelocity;
+                _object.localPosition = Vector3.zero;
+                _object.localRotation = Quaternion.identity;
+            }
+            else
+            {
+                _object.rotation = attachPoint.transform.rotation * Quaternion.Euler(_snapHandle.localEulerAngles);
+                _object.position = attachPoint.transform.position - (_snapHandle.position - _object.position);
             }
         }
     }
