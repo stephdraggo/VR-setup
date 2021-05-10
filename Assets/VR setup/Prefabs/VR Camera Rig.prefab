@@ -2652,6 +2652,8 @@ Transform:
   - {fileID: 1391415440850710848}
   - {fileID: 1391415441351593625}
   - {fileID: 1391415441333675789}
+  - {fileID: 7735604129206450197}
+  - {fileID: 3179763452196925315}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2841,7 +2843,8 @@ GameObject:
   - component: {fileID: 1391415441333675789}
   - component: {fileID: 1391415441333675788}
   - component: {fileID: 1391415441578759624}
-  - component: {fileID: 1391415441578759625}
+  - component: {fileID: 4901463082613730515}
+  - component: {fileID: 2368930812775244727}
   m_Layer: 0
   m_Name: Controller (Right)
   m_TagString: Untagged
@@ -2909,7 +2912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3cf6b047fbd2bb41a9a04a96a1edf2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1391415441578759625
+--- !u!114 &4901463082613730515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2930,8 +2933,8 @@ MonoBehaviour:
   teleport:
     actionPath: /actions/default/in/Teleport
     needsReinit: 0
-  use:
-    actionPath: /actions/default/in/Interact
+  interact:
+    actionPath: 
     needsReinit: 0
   grab:
     actionPath: /actions/default/in/Grab
@@ -2948,10 +2951,10 @@ MonoBehaviour:
   onTeleportReleased:
     m_PersistentCalls:
       m_Calls: []
-  onUsePressed:
+  onInteractPressed:
     m_PersistentCalls:
       m_Calls: []
-  onUseReleased:
+  onInteractReleased:
     m_PersistentCalls:
       m_Calls: []
   onGrabPressed:
@@ -2963,6 +2966,22 @@ MonoBehaviour:
   onTouchpadAxisChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!54 &2368930812775244727
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391415441333675778}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1391415441351593630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,6 +2994,7 @@ GameObject:
   - component: {fileID: 1391415441351593624}
   - component: {fileID: 1391415441578759626}
   - component: {fileID: 1391415441578759627}
+  - component: {fileID: 1391415441578759625}
   m_Layer: 0
   m_Name: Controller (Left)
   m_TagString: Untagged
@@ -3063,8 +3083,8 @@ MonoBehaviour:
   teleport:
     actionPath: /actions/default/in/Teleport
     needsReinit: 0
-  use:
-    actionPath: /actions/default/in/Interact
+  interact:
+    actionPath: 
     needsReinit: 0
   grab:
     actionPath: /actions/default/in/Grab
@@ -3081,10 +3101,10 @@ MonoBehaviour:
   onTeleportReleased:
     m_PersistentCalls:
       m_Calls: []
-  onUsePressed:
+  onInteractPressed:
     m_PersistentCalls:
       m_Calls: []
-  onUseReleased:
+  onInteractReleased:
     m_PersistentCalls:
       m_Calls: []
   onGrabPressed:
@@ -3096,3 +3116,113 @@ MonoBehaviour:
   onTouchpadAxisChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!54 &1391415441578759625
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391415441351593630}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!1 &2992732629552642546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3179763452196925315}
+  - component: {fileID: 4983705254323054751}
+  m_Layer: 0
+  m_Name: Pointer - Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3179763452196925315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992732629552642546}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.8859816, y: 1.0636382, z: -2.9931693}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1391415440662662604}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4983705254323054751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992732629552642546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3394b4269419264f8e0e2493fa5e48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorScaleFactor: 0.1
+  controller: {fileID: 1391415441578759624}
+  invalid: {r: 1, g: 0, b: 0, a: 1}
+  valid: {r: 0, g: 1, b: 0, a: 1}
+--- !u!1 &8130916414015254024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7735604129206450197}
+  - component: {fileID: 922404140734384547}
+  m_Layer: 0
+  m_Name: Pointer - Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7735604129206450197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130916414015254024}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.8859816, y: 1.0636382, z: -2.9931693}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1391415440662662604}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &922404140734384547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8130916414015254024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3394b4269419264f8e0e2493fa5e48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorScaleFactor: 0.1
+  controller: {fileID: 1391415441578759626}
+  invalid: {r: 1, g: 0, b: 0, a: 1}
+  valid: {r: 0, g: 1, b: 0, a: 1}
